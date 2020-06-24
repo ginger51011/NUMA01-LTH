@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+This code may be used freely for any purpose,
+as long as this comment is included
+
+Created on %(date)s
+
+@author: Emil Jonathan Eriksson
+@author_email: eje1999@gmail.com
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 
