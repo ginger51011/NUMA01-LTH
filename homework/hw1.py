@@ -127,23 +127,37 @@ def fast_approx_ln(x, n=400):
 
     """
     
-    return (x - 1) / d(x, n, n)
+    return (x - 1) / __d(x, n, n)
+ 
+# "__" before function name indicates that this
+# should NOT be called outside this module
+def __d(x, k, i):
+    """Recursive method to find ln(x)
     
-def d(x, k, i):
+        Parameters
+    ----------
+    x : float
+    k : int
+    i : int
+    
+    Returns
+    -------
+    a : float
+        An approximation of ln(x)
+    """
+    
     if k < 1:
-        return a(x, i)
+        a = (1 + x) / 2
+        g = sqrt(x)
+        for n in range(0, i):
+            a = (a + g) / 2
+            g = sqrt(a * g)
+        return a
     else:
-        return (d(x, k - 1, i) - 4**(-k) * d(x, k - 1, i - 1)) / (1 - 4**(-k))
+        return (__d(x, k - 1, i) - 4**(-k) * __d(x, k - 1, i - 1)) / (1 - 4**(-k))
+    
 
-def a(x, i):
-    a = (1 + x) / 2
-    g = sqrt(x)
-    for n in range(0, i):
-        a = (a + g) / 2
-        g = sqrt(a * g)
-    return a
-
-print(f"{log(1.41)}, {fast_approx_ln(x=1.41, n=20)}")
+print(f"{log(1.41)}, {fast_approx_ln(x=1.41, n=5)}")
 
 
 
