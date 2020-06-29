@@ -93,3 +93,29 @@ title(r"Positive roots for $ax^2+x-3$ for $a\in [1, 5]$")
 # Knappast linjärt
 
 
+"""
+Task 4 - Post-lecture update
+
+"""
+
+a_arr = linspace(1, 5, num=150)
+root_arr = []
+
+p_a = lambda x, a: a*x**2 + x - 3
+
+for a in a_arr:
+    # Additional arguments for func can be passed (as a list) via args
+    root_arr.append(fsolve(p_a, 1.5, args=[a]))
+    
+figure(2)
+plot(a_arr, root_arr)
+xlabel(r"$a$")
+ylabel(r"$Positive root$")
+title(r"Positive roots for $ax^2+x-3$ for $a\in [1, 5]$")
+
+
+
+
+
+
+
