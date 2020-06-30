@@ -36,9 +36,11 @@ def approx_ln(x, n=400):
 
     """
     
+    # The algorithm are defined with these requirements
     if x < 0 or n < 1:
         raise ValueError("x must be larger than 0, n larger or equal to 1")
     
+    # Initiating a0 and g0
     a = (1 + x) / 2
     g = sqrt(x)
     
@@ -60,18 +62,24 @@ x_ln = [log(x) for x in x_arr]
 figure(0)
 plot(x_arr, x_ln, label=f"ln(x)")
 
+# We want to plot the approximation and difference for 
+# different values of n
 for n in [1, 2, 3, 5]:
     x_approx_ln = []
     x_diff = []
+    
+    # The two different values to be added
+    # are calculated for the same n
     for x in x_arr:
         x_approx_ln.append(approx_ln(x, n))
-    for i in range(0, len(x_arr)):
+    for i in range(0, len(x_arr)):  # We want to calculate for every index of x_arr
         x_diff.append(abs(x_ln[i] - x_approx_ln[i]))
+        
     figure(0)
     plot(x_arr, x_approx_ln, label=f"approx_ln(x) for n={n}")
     legend()
     figure(1)
-    plot(x_arr, x_diff, label=r"$|ln(x) - approx\_ln(x)|$ for $n=$" + str(n))
+    plot(x_arr, x_diff, label=r"$n=$" + str(n))
     legend()
 
 figure(0)
@@ -80,16 +88,16 @@ ylabel(r"$y$")
 title(r"Approximations of $\ln{(x)}$")
 
 figure(1)
+semilogy()  # We want y axis to be logarithmic
 xlabel(r"$x$")
 ylabel(r"$|ln(x) - approx\_ln(x)|$")
-title(r"Difference between approximated ln(x) and ln(x) for some number of iterations n")
+title("Difference between approximated ln(x) and ln(x) \nfor some number of iterations n")
 
 
 """
 Task 3
 
 """
-    
 
 x = 1.41
 n_arr = range(1, 7)
@@ -100,9 +108,11 @@ for n in n_arr:
     
 figure(2)
 plot(n_arr, x_diff, '*r')
+semilogy()  # We want y axis to be logarithmic
 xlabel(r"$n$")
 ylabel(r"$|ln(x) - approx\_ln(x)|$")
-title("Difference between approximation and ln(x) for some number of iterations n")
+title("Difference between approximation and ln(x) \nfor some number of iterations n")
+
 
 """
 Task 4
@@ -127,6 +137,9 @@ def fast_approx_ln(x, n=400):
 
     """
     
+    if x < 0 or n < 1:
+        raise ValueError("x must be larger than 0, n larger or equal to 1")
+    
     return (x - 1) / __d(x, n, n)
  
 # "__" before function name indicates that this
@@ -146,7 +159,7 @@ def __d(x, k, i):
         An approximation of ln(x)
     """
     
-    if k < 1:
+    if k < 1:   # Basfall, vi når d_0,i
         a = (1 + x) / 2
         g = sqrt(x)
         for n in range(0, i):
