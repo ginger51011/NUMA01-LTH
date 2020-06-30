@@ -55,22 +55,15 @@ class ComplexNumber():
         return ComplexNumber((self.real * r + self.imag * i) / n, (self.real * i + self.imag * r) / n)
     
     def __pow__(self, n):
-        # Whyyyyyyyyyyy
-        r = 0
-        i = 0
-        # (a+ib)^n == a^n+jba^(n-1)+(jb)^2*a^(n-2)...+(jb)^n
-        for m in range(0, 2*n + 1):
-            # If the j cancel out
-            if m % 2 == 0 and m % 4 != 0:
-                r -= self.real**(n-m) * self.imag**m
-            elif m % 2 == 0 and m % 4 == 0:
-                r += self.real**(n-m) * self.imag**m
-            elif m % 2 != 0 and n % 3 != 0 :
-                i -= self.real**(n-m) * self.imag**m
-            elif m % 2 != 0 and n % 3 != 0 :
-                i += self.real**(n-m) * self.imag**m
-            
-        return ComplexNumber(r, i)
+        # DeMoivre's Theorem gives us
+        # z^n =  r^n * (cos(n*arg(z)) + jsin(n*arg(z))) 
+        new_argument = n * self.argument()
+        r = self.absolute_value()
+        
+        a = r**n  * cos(new_argument)
+        b = r**n * sin(new_argument)
+        
+        return ComplexNumber(a, b)
     
     def get_real(self):
         return self.real
@@ -129,7 +122,7 @@ print(f"z = {z}, w = {w}")
 print(f"z + w = {z + w}")
 print(f"z - w = {z - w}")
 print(f"z * w = {z * w}")
-print(f"z^2 = {z**2}")
+print(f"z^3 = {z**3}")
 print(f"z / w = {z / w}")
 print(f"arg(z) = {z.argument()}")
 print(f"abs(z) = {z.absolute_value()}")
