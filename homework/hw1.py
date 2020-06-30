@@ -76,7 +76,7 @@ for n in [1, 2, 3, 5]:
         x_diff.append(abs(x_ln[i] - x_approx_ln[i]))
         
     figure(0)
-    plot(x_arr, x_approx_ln, label=f"approx_ln(x) for n={n}")
+    plot(x_arr, x_approx_ln, label=f"n={n}")
     legend()
     figure(1)
     plot(x_arr, x_diff, label=r"$n=$" + str(n))
@@ -119,7 +119,7 @@ Task 4
 
 """
 
-def fast_approx_ln(x, n=400):
+def fast_approx_ln(x, n=5):
     """A fast approximation of ln(x), using
     B.C. Carlssons algorithm
 
@@ -173,4 +173,24 @@ def __d(x, k, i):
 print(f"{log(1.41)}, {fast_approx_ln(x=1.41, n=5)}")
 
 
+"""
+Task 5
 
+"""
+
+for n in [1, 2, 3, 5]:
+    x_fast_approx_ln = []
+    x_diff = []
+    
+    for x in x_arr:
+        x_diff.append(abs(log(x) - fast_approx_ln(x, n)))
+        
+    figure(3)
+    plot(x_arr, x_diff, label=r"$n=$" + str(n))
+
+figure(3)
+semilogy()  # We want y axis to be logarithmic
+legend()
+xlabel(r"$x$")
+ylabel(r"$|ln(x) - approx\_ln(x)|$")
+title("Difference between fast_approximated _n(x) and ln(x) \nfor some number of iterations n")
