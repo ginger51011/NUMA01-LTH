@@ -6,7 +6,8 @@ as long as this comment is included
 
 Created on Mon Jun 29 16:53:31 2020
 
-@author: Emil Jonathan Eriksson & Peter Handrup
+@author: Emil Jonathan Eriksson
+@author_email: eje1999@gmail.com
 """
 from numpy import *
 from matplotlib.pyplot import *
@@ -59,8 +60,6 @@ Task 2
 
 x_arr = linspace(1, 10, num=200)
 x_ln = [log(x) for x in x_arr]
-figure(0)
-plot(x_arr, x_ln, label=f"ln(x)")
 
 # We want to plot the approximation and difference for 
 # different values of n
@@ -83,6 +82,7 @@ for n in [1, 2, 3, 5]:
     legend()
 
 figure(0)
+plot(x_arr, x_ln, label=f"ln(x)")
 xlabel(r"$x$")
 ylabel(r"$y$")
 title(r"Approximations of $\ln{(x)}$")
