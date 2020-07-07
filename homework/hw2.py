@@ -16,15 +16,23 @@ import sys
 class Interval():
     """
     Represent an interval of two real numbers,
-    left and right endpoints.
+    left and right endpoints. Right is optional.
     
     """
     
-    def __init__(self, left, right):
+    def __init__(self, left, *right):
+        # If right is not passed
         if not right:
             self.left = left
             self.right = left
-        elif left > right:
+            return
+        # If more than one right is passed
+        elif len(right) > 1:
+            raise ValueError("Only 1 right argument may be passed")
+        # If only one right is passed, we unpack the tuple
+        else:
+            right, = right
+        if left > right:
             raise ValueError("Left bound must be to the left")
         self.left = left
         self.right = right
@@ -60,7 +68,7 @@ class Interval():
         
     def __truediv__(self, other):
         if isinstance(other, Interval):
-            if other.left < 0 < other.right:
+            if other.left <= 0 <= other.right:
                 raise ValueError("Zero in interval, division by zero extremely illegal")
             a, b, c, d = self.left, self.right, other.left, other.right
             possible_combinations = [a/c, a/d, b/c,b/d]
@@ -120,7 +128,7 @@ print(f"I1 / I2 == {I1 / I2} and should be [-4, -0.5]")
 I3 = Interval(2,3)
 print(f"Does {I1} contain {I3}: {I3 in I1}")
 print(f"Does {I3} contain {I1}: {I1 in I3}")
-print(f"")
+print(f"Interval(1) should print [1, 1] and prints {Interval(1)}")
 
         
         
