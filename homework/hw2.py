@@ -4,7 +4,8 @@
 This code may be used freely for any purpose,
 as long as this comment is included
 
-Created on Tue Jul  7 11:19:34 2020
+Created on Tue Jul  7 11:19:34 2020,
+with a quick break for lunch
 
 @author: Emil Jonathan Eriksson
 @author_email: eje1999@gmail.com
