@@ -102,7 +102,7 @@ ax.legend()
 Task 4
 
 """
-"""
+
 # I litterally copypasted code from ta10 here...
 ax.annotate(r"$\sin(\pi)$", xy=(pi, sin(pi)),
             xytext = (pi / 2, -0.5),
@@ -116,7 +116,7 @@ ax.annotate(r"$T_2(pi)$, around $\frac{3\pi}{2}$", xy=(pi, taylor_poly(sin, pi, 
             xytext = (3*pi / 2, 0.5),
             arrowprops = {"facecolor": "black", "shrink": 0.005,
                           "width": 0.75, "headwidth": 7.5})
-"""
+
 """
 Extra fluff
 
